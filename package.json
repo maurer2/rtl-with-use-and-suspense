@@ -21,6 +21,7 @@
     "@rollup/rollup-darwin-arm64": "^4.29.1",
     "@rollup/rollup-darwin-x64": "^4.29.1",
     "@rollup/rollup-linux-x64-gnu": "^4.29.1",
+    "@testing-library/react": "^16.1.0",
     "@total-typescript/ts-reset": "^0.6.1",
     "@trivago/prettier-plugin-sort-imports": "^5.2.0",
     "@types/node": "^22.10.3",
