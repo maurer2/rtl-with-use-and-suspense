@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import { z } from 'zod';
 
 import List from '../components/List/List';
+import PaginationClient from '../components/PaginationClient/PaginationClient';
 import getData from '../services/get-data';
 
 type HomeProps = {
@@ -29,16 +30,19 @@ export default async function Home({ searchParams }: HomeProps) {
     <main className="m-4">
       <h1 className="mb-4">Suspense with use</h1>
 
-      <section>
+      <section className="mb-8">
         <h2 className="mb-4">Always show suspense fallback when new data is fetched</h2>
-        <Suspense
-          fallback={<p className="motion-safe:animate-pulse">Loading numbers!</p>}
-          key={`${offset}-${limit}`}
-        >
-          <List itemsPromise={getDataPromise} />
-        </Suspense>
 
-        <div className="flex gap-4 mt-4">
+        <div className="mb-4">
+          <Suspense
+            fallback={<p className="motion-safe:animate-pulse">Loading numbers!</p>}
+            key={`${offset}-${limit}`}
+          >
+            <List itemsPromise={getDataPromise} />
+          </Suspense>
+        </div>
+
+        <div className="flex gap-4">
           <Link
             href={{
               query: { offset: prevOffset, limit: 10 },
@@ -54,6 +58,18 @@ export default async function Home({ searchParams }: HomeProps) {
             Next
           </Link>
         </div>
+      </section>
+
+      <section>
+        <h2 className="mb-4">Show suspense fallback on load and use transition afterwards</h2>
+
+        <div className="mb-4">
+          <Suspense fallback={<p className="motion-safe:animate-pulse">Loading numbers!</p>}>
+            <List itemsPromise={getDataPromise} />
+          </Suspense>
+        </div>
+
+        <PaginationClient offset={offset} limit={limit} />
       </section>
     </main>
   );
