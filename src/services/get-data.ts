@@ -1,3 +1,5 @@
+'use server';
+
 export default async function getData(offset: number, limit: number): Promise<number[]> {
   const { promise, resolve, reject } = Promise.withResolvers<number[]>();
 

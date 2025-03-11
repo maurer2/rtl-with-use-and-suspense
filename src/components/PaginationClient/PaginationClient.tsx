@@ -23,7 +23,7 @@ function PaginationClient({ offset, limit }: PaginationClientProps) {
     });
 
     startTransition(() => {
-      router.replace(`${pathName}?${newURLParams.toString()}`);
+      router.push(`${pathName}?${newURLParams.toString()}`);
       // window.history.pushState(null, '', '?' + newURLParams.toString()); // https://github.com/vercel/next.js/issues/66016
     });
   };
@@ -37,7 +37,7 @@ function PaginationClient({ offset, limit }: PaginationClientProps) {
     });
 
     startTransition(() => {
-      router.replace(`${pathName}?${newURLParams.toString()}`);
+      router.push(`${pathName}?${newURLParams.toString()}`);
     });
   };
 
@@ -46,7 +46,7 @@ function PaginationClient({ offset, limit }: PaginationClientProps) {
       {isPending ? (
         <p className="motion-safe:animate-pulse">Loading numbers (useTransition)!</p>
       ) : null}
-      <div className="flex gap-4 mt-4">
+      <div className="flex gap-4 mt-4" inert={isPending}>
         <button onClick={handlePrev}>Prev</button>
         <button onClick={handleNext}>Next</button>
       </div>
